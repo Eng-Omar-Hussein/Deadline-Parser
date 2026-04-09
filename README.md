@@ -1,42 +1,37 @@
-# Deadline-Parser
-# Flan-T5 Task & Deadline Extractor
+# Deadline-Parser: Flan-T5 Task & Deadline Extractor
 
 A robust NLP-powered API that extracts structured tasks and deadlines from unstructured text. This project utilizes a fine-tuned **Google Flan-T5-Base** model, specifically trained to handle complex professional and informal communication.
 
-## 🚀 The Feature
+## 🚀 Key Features
 The core feature of this repository is a deep-learning inference engine that transforms messy, natural language emails or chat messages into clean Task/Deadline pairs.
 
-### What makes this model special?
-Unlike simple keyword search or regex-based systems, this model understands **context**:
-* **Linguistic Flexibility:** It handles professional business English, tech-heavy jargon (e.g., "distillation models," "Expo router"), and multi-lingual slang (e.g., Egyptian Arabic phrases).
-* **Relative Time Recognition:** It can identify deadlines like "Friday at 3:00 PM," "EOD," "tomorrow morning," or "October 15th."
-* **Noise Filtering:** It distinguishes between actionable tasks and general conversation.
+* **Linguistic Flexibility:** Handles professional English, tech jargon (e.g., "distillation models," "Expo router"), and informal context.
+* **Relative Time Recognition:** Identifies deadlines like "Friday at 5pm," "EOD," "tomorrow morning," or specific dates.
+* **Noise Filtering:** Distinguishes between actionable tasks and general conversation.
 
 ## 🧠 The Model
-The underlying model is a Seq2Seq (Sequence-to-Sequence) Transformer based on **Flan-T5**. 
+The underlying engine is a Seq2Seq (Sequence-to-Sequence) Transformer based on **Flan-T5**. 
 
 * **Base Model:** `google/flan-t5-base`
-* **Task:** Token Classification & Text Generation
-* **Training Focus:** Fine-tuned on a custom dataset of business emails and technical project management communications to recognize the specific relationship between an action (Task) and its constraint (Deadline).
+* **Architecture:** Encoder-Decoder Transformer
+* **Training Focus:** Fine-tuned on a custom dataset of business emails and project management communications.
 
-### 🛠 Setup & Installation
-1. Download Model Weights
-Due to file size constraints, the model weights are hosted on Google Drive.
+## 📊 Extraction Examples (Test Results)
+The following table demonstrates the model's actual performance on real-world inputs:
 
-Download Link: Model link 
+| Input Email/Text | Model Output (Raw Result) |
+| :--- | :--- |
+| "Please submit the financial report by next Friday at 5pm." | `Task: Submit financial report \| Deadline: next Friday at 5pm` |
+| "We need to finish the slide deck for the client presentation by Tuesday morning." | `Task: Finish slide deck \| Deadline: Tuesday morning` |
+| "The server migration must be completed before the system downtime starts at 11 PM tonight." | `Task: Complete server migration \| Deadline: at 11 PM tonight` |
 
+## 🛠 Setup & Installation
 
-Instructions: Download and extract the folder, rename it to final_extraction_model, and place it in the root directory.
-#### Install Requirements
+### 1. Download Model Weights
+Due to file size constraints, the model weights are hosted externally.
+* **Download Link:** [Model link here]
+* **Instructions:** Download and extract the folder, rename it to `final_extraction_model`, and place it in the root directory.
 
+### 2. Install Requirements
+```bash
 pip install fastapi uvicorn transformers torch
-
-### Run the Service
-
-python main.py  
-
-### API Output
-
-Input: "The presentation for the graduation project is on Sunday morning."
-
-Output: "extraction": "Task: submit quarterly financial review | Deadline: Friday at 3:00 PM"
