@@ -28,4 +28,4 @@ jobs:
       - name: Run compose up
         run: |
           docker compose up -d --wait
-          docker compose logs deadline-parser-api
+          docker compose logs --until 2m deadline-parser-api
