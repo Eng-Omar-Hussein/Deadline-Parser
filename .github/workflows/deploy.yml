@@ -28,3 +28,4 @@ jobs:
         run: |
           docker compose up -d --wait
           docker compose logs -f deadline-parser-api
+          
