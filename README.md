@@ -29,7 +29,7 @@ The following table demonstrates the model's actual performance on real-world in
 
 ### 1. Download Model Weights
 Due to file size constraints, the model weights are hosted externally.
-* **Download Link:** [Model link here]
+The fine-tuned weights for this model are available on [Google Drive](https://drive.google.com/drive/folders/17hAAXHLSfrIoWrxhdXHiOmAkvDxFcE1q).
 * **Instructions:** Download and extract the folder, rename it to `final_extraction_model`, and place it in the root directory.
 
 ### 2. Install Requirements
