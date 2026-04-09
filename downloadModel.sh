@@ -34,13 +34,19 @@ while IFS= read -r url; do
     fi
     
     COUNT=$((COUNT + 1))
-    echo "[$COUNT/$TOTAL] Downloading: $url"
-    
-    # Download to current directory
-    if gdown --fuzzy "$url" -O "$CURRENT_DIR/"; then
-        echo "✓ Successfully downloaded"
+    echo "[$COUNT/$TOTAL] Processing: $url"
+
+    FILENAME="model.safetensors"
+
+    if [ -f "$CURRENT_DIR/$FILENAME" ]; then
+        echo "✓ File already exists: $FILENAME. Skipping download."
     else
-        echo "✗ Failed to download: $url"
+        echo "Downloading: $url -> $FILENAME"
+        if gdown --fuzzy "$url" -O "$CURRENT_DIR/$FILENAME"; then
+            echo "✓ Successfully downloaded"
+        else
+            echo "✗ Failed to download: $url"
+        fi
     fi
     echo "--------------------------------"
     
